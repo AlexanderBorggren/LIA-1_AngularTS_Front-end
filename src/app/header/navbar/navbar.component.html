@@ -1,0 +1,38 @@
+<nav class="bg-transparent w-full top-0 left-0 z-10">
+    <div class="container mx-auto flex justify-center items-center text-center p-4">
+      
+      <!-- Toggle Button for Mobile (hidden on large screens) -->
+      <div class="lg:hidden absolute left-4">
+        <button (click)="toggleMenu()" class="text-white focus:outline-none">
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+  
+      <!-- Navbar Links (hidden on mobile, centered on larger screens) -->
+      <div class="hidden lg:flex space-x-8 justify-center items-center">
+        <a routerLink="/women" class="text-white hover:text-gray-400 cursor-default">Dam</a>
+        <a routerLink="/men" class="text-white hover:text-gray-400 cursor-default">Herr</a>
+        <a routerLink="/children" class="text-white hover:text-gray-400 cursor-default">Barn</a>
+        <a routerLink="/brands" class="text-white hover:text-gray-400 cursor-default">Varumärken</a>
+        <a routerLink="/accessories" class="text-white hover:text-gray-400 cursor-default">Accessoarer</a>
+        <a routerLink="/interior" class="text-white hover:text-gray-400 cursor-default">Inredning</a>
+        <a routerLink="/electronics" class="text-white hover:text-gray-400 cursor-default">Elektronik</a>
+        <a routerLink="/entertainment" class="text-white hover:text-gray-400 cursor-default">Underhållning</a>
+      </div>
+  
+      <!-- Mobile Menu -->
+      <div [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen}" class="lg:hidden absolute w-full left-0 top-full shadow-lg">
+        <a routerLink="/women" class="block px-4 py-2 text-white hover:bg-gray-400 cursor-default">Dam</a>
+        <a routerLink="/men" class="block px-4 py-2 text-white hover:bg-gray-400 cursor-default">Herr</a>
+        <a routerLink="/children" class="block px-4 py-2 text-white hover:bg-gray-400 cursor-default">Barn</a>
+        <a routerLink="/brands" class="block px-4 py-2 text-white hover:bg-gray-400 cursor-default">Varumärken</a>
+        <a routerLink="/accessories" class="block px-4 py-2 text-white hover:bg-gray-400 cursor-default">Accessoarer</a>
+        <a routerLink="/interior" class="block px-4 py-2 text-white hover:bg-gray-400 cursor-default">Inredning</a>
+        <a routerLink="/electronics" class="block px-4 py-2 text-white hover:bg-gray-400 cursor-default">Elektronik</a>
+        <a routerLink="/entertainment" class="block px-4 py-2 text-white hover:bg-gray-400 cursor-default">Underhållning</a>
+      </div>
+    </div>
+  </nav>
+  <hr class="border-black border-1 w-full">
