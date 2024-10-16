@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { SearchbarComponent } from './searchbar/searchbar.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ContentComponent } from './content/content.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { SearchbarComponent } from './searchbar/searchbar.component';
 
 @Component({
   selector: 'app-header',
@@ -9,5 +9,6 @@ import { ContentComponent } from './content/content.component';
   imports: [SearchbarComponent, NavbarComponent, ContentComponent],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {}

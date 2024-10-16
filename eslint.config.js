@@ -31,6 +31,8 @@ module.exports = tseslint.config(
         },
       ],
       '@typescript-eslint/no-explicit-any': 'error',
+      '@angular-eslint/prefer-output-readonly': ['error'],
+      '@angular-eslint/prefer-on-push-component-change-detection': ['error'],
     },
   },
   {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { SharedModule } from '../../../shared/shared/shared.module';
 
 @Component({
@@ -7,5 +7,6 @@ import { SharedModule } from '../../../shared/shared/shared.module';
   imports: [SharedModule],
   templateUrl: './searchbar.component.html',
   styleUrl: './searchbar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchbarComponent {}
