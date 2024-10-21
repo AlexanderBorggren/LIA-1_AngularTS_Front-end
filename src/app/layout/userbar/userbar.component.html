@@ -1,0 +1,5 @@
+<div class="w-full flex justify-end">
+<ng-container *ngFor="let button of userButtons">
+  <a [routerLink]="button.route" class="material-symbols-outlined">{{button.icon}}</a>
+</ng-container>
+</div>

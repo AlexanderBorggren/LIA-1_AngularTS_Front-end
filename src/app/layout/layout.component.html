@@ -1,0 +1,32 @@
+<div class="relative min-h-screen flex flex-col items-center justify-start">
+  <div
+    class="absolute inset-0 bg-cover bg-center z-[-1]"
+    style="
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('/assets/images/background-image.webp');
+    "
+  ></div>
+
+  <div class="relative z-10 w-full flex flex-col items-center">
+    <h1 class="w-full text-4xl font-bold text-center text-white mt-8 pt-6 cursor-default">
+      Vintage
+    </h1>
+
+    <app-searchbar class="w-full justify-center flex px-2 z-10"></app-searchbar>
+
+    <section class="navbar-container w-full relative flex items-center px-4">
+      <app-navbar class="mx-auto"></app-navbar>
+      <app-userbar class="absolute right-0 px-2 z-10"></app-userbar>
+    </section>
+
+    <hr class="border-black border-1 w-full" />
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section class="content my-12">
+        <div class="max-w-7xl mx-auto">
+          <app-content></app-content>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

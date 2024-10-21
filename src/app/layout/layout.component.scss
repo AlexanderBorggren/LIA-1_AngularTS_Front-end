@@ -1,0 +1,16 @@
+.navbar-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+app-navbar {
+  margin: 0 auto;
+}
+
+app-userbar {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}

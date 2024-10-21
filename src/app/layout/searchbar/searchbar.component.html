@@ -1,0 +1,7 @@
+<div class="flex-grow max-w-md mx-4 z-10">
+  <mat-form-field appearance="outline" class="w-full z-10 relative">
+    <mat-icon matPrefix class="material-symbols-outlined">search</mat-icon>
+    <input matInput type="text" placeholder="Vad vill du handla?" [(ngModel)]="searchQuery"
+          class="text-white placeholder:text-white bg-transparent" (click)="onSearch()">
+  </mat-form-field>
+</div>

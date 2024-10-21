@@ -1,0 +1,50 @@
+<nav class="bg-transparent w-full top-0 left-0 z-10">
+  <div class="container mx-auto flex justify-center items-center text-center p-4">
+
+    <div class="lg:hidden absolute left-4">
+      <button (click)="toggleMenu()" class="text-white focus:outline-none">
+        <svg
+          class="h-6 w-6"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16m-7 6h7"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div class="hidden lg:flex space-x-8 justify-center items-center">
+      <ng-container *ngFor="let category of categories">
+        <a
+          [routerLink]="category.route"
+          routerLinkActive="text-gray-400"
+          class="text-white hover:text-gray-400 cursor-default"
+        >
+          {{ category.name }}
+        </a>
+      </ng-container>
+    </div>
+
+    <div
+      [ngClass]="{ block: isMenuOpen, hidden: !isMenuOpen }"
+      class="lg:hidden absolute w-full left-0 top-full shadow-lg"
+    >
+      <ng-container *ngFor="let category of categories">
+        <a
+          [routerLink]="category.route"
+          routerLinkActive="bg-gray-400"
+          class="block px-4 py-2 text-white hover:bg-gray-400 cursor-default"
+        >
+          {{ category.name }}
+        </a>
+      </ng-container>
+    </div>
+  </div>
+</nav>
