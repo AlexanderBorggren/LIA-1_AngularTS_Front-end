@@ -29,17 +29,18 @@ a {
   }
 
   &:active {
-    color: #9ca3af;
-    transform: scale(1);
+    color: #ffffff;
+    text-decoration:double;
+    transform: scale(1.2);
     transition: all 0.1s ease-in-out;
   }
 
   &.active {
-    color: #9ca3af;
-
+    color: #ffffff;
+    font-size: 1.1rem;
     &::after {
       visibility: visible;
-      transform: scaleX(1);
+      transform: scaleX(1.1);
       background-color: #9ca3af;
     }
   }

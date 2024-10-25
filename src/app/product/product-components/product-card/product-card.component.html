@@ -1,0 +1,20 @@
+<div *ngIf="products | async as products">
+  <div class="bg-white rounded-lg shadow-lg p-10 xs:p-8">
+    <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (product of products; track product.id) {
+        <div
+          [routerLink]="['/product/', product.id]"
+          class="fixed-size-card bg-white rounded-lg border overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col"
+        >
+          <img [src]="product.image" [alt]="product.title" class="w-full h-48 object-cover" />
+          <div class="p-4 flex-grow flex flex-col justify-between">
+            <h6 class="title-style font-semibold mb-2 text-gray-800 cursor-default">
+              {{ product.title }}
+            </h6>
+            <p class="text-sm font-bold text-black cursor-default">{{ product.price }}kr</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-import { ProductListService } from './product-list.service';
+import { ProductCardService } from './product-card.service';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
 describe('ProductListService', () => {
-  let service: ProductListService;
+  let service: ProductCardService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ProductListService, provideHttpClient(withFetch())],
+      providers: [ProductCardService, provideHttpClient(withFetch())],
     });
-    service = TestBed.inject(ProductListService);
+    service = TestBed.inject(ProductCardService);
   });
 
   it('should be created', () => {

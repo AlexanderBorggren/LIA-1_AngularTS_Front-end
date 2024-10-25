@@ -4,7 +4,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ContentComponent } from './content/content.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { FavoriteComponent } from '../favorite/favorite.component';
-import { CartComponent } from '../cart/cart.component';
+import { CartPageComponent } from '../cart/cart-components/cart-page/cart-page.component';
 import { UserbarComponent } from './userbar/userbar.component';
 import { RouterOutlet, RouterLink } from '@angular/router';
 
@@ -17,7 +17,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
     ContentComponent,
     ProfileComponent,
     FavoriteComponent,
-    CartComponent,
+    CartPageComponent,
     UserbarComponent,
     RouterOutlet,
     RouterLink,
