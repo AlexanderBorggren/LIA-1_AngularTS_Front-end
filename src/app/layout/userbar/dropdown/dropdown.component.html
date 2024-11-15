@@ -1,6 +1,6 @@
-<div class="dropdown-container" *ngIf="isOpen">
+<div class="dropdown-container" *ngIf="isOpen()">
   <div class="dropdown-content">
-  <ng-container [ngSwitch]="selectedType">
+  <ng-container [ngSwitch]="selectedType()">
     <app-profile-dropdown *ngSwitchCase="'profile'"></app-profile-dropdown>
     <app-favorite-dropdown *ngSwitchCase="'favorite'"></app-favorite-dropdown>
     <app-cart-dropdown *ngSwitchCase="'cart'"></app-cart-dropdown>

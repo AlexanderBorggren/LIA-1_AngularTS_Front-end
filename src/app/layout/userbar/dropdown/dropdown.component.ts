@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, effect, input } from '@angular/core';
 import { UserbarComponent } from '../userbar.component';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy } from '@angular/core';
@@ -21,6 +21,13 @@ import { FavoriteDropdownComponent } from '../../../favorite/components/favorite
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownComponent {
-  @Input() isOpen!: boolean;
-  @Input() selectedType!: string;
+  readonly isOpen = input.required<string>();
+  readonly selectedType = input.required<string>();
+
+  constructor() {
+    effect(() => {
+      console.log('DropdownComponent isOpen:', this.isOpen());
+      console.log('DropdownComponent selectedType:', this.selectedType());
+    });
+  }
 }

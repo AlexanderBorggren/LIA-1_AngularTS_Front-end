@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, effect } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, effect, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -22,20 +22,20 @@ import { CartService } from '../../cart/services/cart.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserbarComponent {
-  isOpen = false;
-  selectedType = '';
+  readonly isOpen = signal(false);
+  readonly selectedType = signal('');
 
   toggleDropdown(type: string) {
-    this.isOpen = this.selectedType !== type || !this.isOpen;
-    this.selectedType = type;
+    this.isOpen.set(this.selectedType() !== type || !this.isOpen());
+    this.selectedType.set(type);
   }
 
   keepDropdownOpen() {
-    this.isOpen = true;
+    this.isOpen.set(true);
   }
 
   closeDropdown() {
-    this.isOpen = false;
+    this.isOpen.set(false);
   }
 
   routeToPage() {
@@ -59,7 +59,7 @@ export class UserbarComponent {
         if (isUpdated && !this.isOpen) {
           this.toggleDropdown('cart');
           console.log('cart dropdown opened');
-          this.cartService.resetCartUpdated();
+          //this.cartService.resetCartUpdated();
         }
       },
       { allowSignalWrites: true },
