@@ -1,6 +1,5 @@
 <nav class="bg-transparent w-full top-0 left-0 z-10">
   <div class="container mx-auto flex justify-center items-center text-center p-4">
-
     <div class="lg:hidden absolute left-4">
       <button (click)="toggleMenu()" class="text-white focus:outline-none">
         <svg
@@ -22,15 +21,16 @@
 
     <div class="hidden lg:flex space-x-8 justify-center items-center">
       <div class="bg-transparent space-x-8">
-      @for (category of categories; track category.route) {
-        <a
-          [routerLink]="category.route"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          class="text-white hover:text-gray-400 cursor-default">
-          {{ category.name }}
-        </a>
-      }
+        @for (category of categories; track category.route) {
+          <a
+            [routerLink]="category.route"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="text-white hover:text-gray-400 cursor-default"
+          >
+            {{ category.name }}
+          </a>
+        }
       </div>
     </div>
 
@@ -38,7 +38,7 @@
       [ngClass]="{ block: isMenuOpen, hidden: !isMenuOpen }"
       class="lg:hidden absolute w-full left-0 top-full shadow-lg"
     >
-      <ng-container *ngFor="let category of categories">
+      @for (category of categories; track category.route) {
         <a
           [routerLink]="category.route"
           routerLinkActive="active"
@@ -47,7 +47,7 @@
         >
           {{ category.name }}
         </a>
-      </ng-container>
+      }
     </div>
   </div>
 </nav>

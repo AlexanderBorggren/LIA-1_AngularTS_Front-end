@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, effect, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { CartDropdownComponent } from '../../cart/components/cart-dropdown/cart-dropdown.component';
-import { DropdownComponent } from './dropdown/dropdown.component';
 import { CartService } from '../../cart/services/cart.service';
+import { DropdownComponent } from './dropdown/dropdown.component';
 
 @Component({
   selector: 'app-userbar',
@@ -22,8 +23,25 @@ import { CartService } from '../../cart/services/cart.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserbarComponent {
+  private readonly cartService = inject(CartService);
+  private readonly destroyRef = inject(DestroyRef);
+
   readonly isOpen = signal(false);
   readonly selectedType = signal('');
+  readonly userButtons = [
+    { icon: 'account_circle', type: 'profile', route: '/profile' },
+    { icon: 'favorite', type: 'favorite', route: '/favorite' },
+    { icon: 'shopping_cart', type: 'cart', route: '/cart' },
+  ];
+
+  constructor() {
+    toObservable(this.cartService.cartOpen)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((isOpen) => {
+        this.isOpen.set(isOpen);
+        this.selectedType.set('cart');
+      });
+  }
 
   toggleDropdown(type: string) {
     this.isOpen.set(this.selectedType() !== type || !this.isOpen());
@@ -36,33 +54,10 @@ export class UserbarComponent {
 
   closeDropdown() {
     this.isOpen.set(false);
+    this.cartService.cartOpen.set(false);
   }
 
   routeToPage() {
     //this.router.navigate([route]);
-  }
-
-  userButtons = [
-    { icon: 'account_circle', type: 'profile', route: '/profile' },
-    { icon: 'favorite', type: 'favorite', route: '/favorite' },
-    { icon: 'shopping_cart', type: 'cart', route: '/cart' },
-  ];
-
-  readonly cartService = inject(CartService);
-
-  constructor() {
-    effect(
-      () => {
-        const isUpdated = this.cartService.cartUpdated();
-        console.log('cartUpdated state:', isUpdated);
-
-        if (isUpdated && !this.isOpen) {
-          this.toggleDropdown('cart');
-          console.log('cart dropdown opened');
-          //this.cartService.resetCartUpdated();
-        }
-      },
-      { allowSignalWrites: true },
-    );
   }
 }

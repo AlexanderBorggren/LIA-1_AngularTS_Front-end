@@ -1,11 +1,11 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { ProductDetailedService } from '../../services/product-detailed.service';
-import { switchMap, map } from 'rxjs';
-import { SimilarProductsComponent } from '../similar-products/similar-products.component';
-import { CartService } from '../../../cart/services/cart.service';
+import { map, switchMap } from 'rxjs';
 import { ProductDetailed } from '../../../../shared/models/product-detailed';
+import { CartService } from '../../../cart/services/cart.service';
+import { ProductDetailedService } from '../../services/product-detailed.service';
+import { SimilarProductsComponent } from '../similar-products/similar-products.component';
 
 @Component({
   selector: 'app-product-detailed',
@@ -21,9 +21,16 @@ export class ProductDetailedComponent {
   private readonly productDetailedService = inject(ProductDetailedService);
   private readonly cartService = inject(CartService);
 
-  productDetails = this.route.paramMap.pipe(
+  productDetails$ = this.route.paramMap.pipe(
     map((params) => params.get('id')),
-    switchMap((id) => this.productDetailedService.getProductById(Number(id))),
+    switchMap((id) =>
+      this.productDetailedService.getProductById(+id!).pipe(
+        map((product) => ({
+          product,
+          stars: this.getStars(product.rating.rate),
+        })),
+      ),
+    ),
   );
 
   addToCart(product: ProductDetailed): void {

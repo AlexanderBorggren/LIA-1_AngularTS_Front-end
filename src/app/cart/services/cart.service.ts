@@ -14,7 +14,7 @@ export class CartService {
     totalAmount: 0,
   });
 
-  readonly cartUpdated = signal(false);
+  readonly cartOpen = signal(false);
   readonly paymentCompleteSubject = signal(false);
 
   readonly cartItems = computed(() => this.cart().items);
@@ -40,7 +40,7 @@ export class CartService {
         totalAmount: this.calculateTotalAmount(items),
       };
     });
-    this.cartUpdated.set(true);
+    this.cartOpen.set(true);
   }
 
   removeItem(productId: number) {
@@ -54,7 +54,7 @@ export class CartService {
         totalAmount,
       };
     });
-    this.cartUpdated.set(true);
+    this.cartOpen.set(true);
   }
 
   decreaseQuantity(productId: number) {
@@ -74,7 +74,7 @@ export class CartService {
         totalAmount,
       };
     });
-    this.cartUpdated.set(true);
+    this.cartOpen.set(true);
   }
 
   increaseQuantity(productId: number) {
@@ -96,8 +96,12 @@ export class CartService {
     });
   }
 
-  resetCartUpdated() {
-    this.cartUpdated.set(false);
+  openCart() {
+    this.cartOpen.set(true);
+  }
+
+  closeCart() {
+    this.cartOpen.set(false);
   }
 
   completePayment() {
