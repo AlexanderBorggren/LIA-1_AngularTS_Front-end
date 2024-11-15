@@ -9,4 +9,5 @@ export interface ProductDetailed {
     rate: number;
     count: number;
   };
+  quantity: number;
 }

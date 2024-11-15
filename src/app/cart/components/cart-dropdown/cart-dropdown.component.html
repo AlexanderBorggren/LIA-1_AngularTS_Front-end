@@ -1,0 +1,62 @@
+<div class="cart-dropdown">
+  <h3 class="text-center">Kundkorg</h3>
+
+  <div class="cart-items">
+    @if (cartItemsArray.length > 0) {
+      @for (item of cartItemsArray; track item.id) {
+        <div class="cart-item">
+          <div class="item-details">
+            <img class="item-picture" [src]="item.image" [alt]="item.title" />
+            <p class="item-title">{{ item.title }}</p>
+            <p class="item-price">{{ item.price | number: '1.2-2' }} kr</p>
+            <div class="item-quantity-container flex-col">
+              <p class="item-quantity">Antal: {{ item.quantity }}</p>
+
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="increaseQuantity(item.id)"
+                class="material-symbols-outlined"
+              >
+                add
+              </button>
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="decreaseQuantity(item.id)"
+                class="material-symbols-outlined"
+              >
+                remove
+              </button>
+            </div>
+          </div>
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="removeFromCart(item.id)"
+            class="material-symbols-outlined self-end p-2"
+          >
+            close
+          </button>
+        </div>
+      }
+    } @else {
+      <p class="empty-message">Kundkorgen är tom</p>
+    }
+  </div>
+
+  @if (cartItemsArray.length > 0) {
+    <div class="checkout-section">
+      <div class="total-amount">
+        <p>Total:</p>
+        <p>{{ totalAmount() | number: '1.2-2' }} kr</p>
+      </div>
+    </div>
+    <button
+      [routerLink]="'/checkout'"
+      class="checkout-button bg-black text-white py-2 px-4 rounded-lg shadow-lg transition-colors justify-center items-center"
+    >
+      Kassan
+    </button>
+  }
+

@@ -4,6 +4,7 @@ import { homeRoutes } from './home/home.routes';
 import { favoriteRoutes } from './favorite/favorite.routes';
 import { cartRoutes } from './cart/cart.routes';
 import { productRoutes } from './product/product.routes';
+import { searchRoutes } from './search/search.routes';
 
 export const routes: Routes = [
   ...homeRoutes,
@@ -11,4 +12,5 @@ export const routes: Routes = [
   ...favoriteRoutes,
   ...cartRoutes,
   ...productRoutes,
+  ...searchRoutes,
 ];

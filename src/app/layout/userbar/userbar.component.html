@@ -1,5 +1,13 @@
 <div class="w-full flex justify-end">
-  @for (button of userButtons; track button) {
-    <button [routerLink]="button.route" class="material-symbols-outlined">{{ button.icon }}</button>
-  }
+
+  <button *ngFor="let button of userButtons"
+          (mouseenter)="toggleDropdown(button.type)"
+          (click)="routeToPage(button.route)"
+          class="material-symbols-outlined">
+    {{ button.icon }}
+  </button>
+</div>
+<div (mouseenter)="keepDropdownOpen()"
+     (mouseleave)="closeDropdown()">
+  <app-dropdown [isOpen]="isOpen" [selectedType]="selectedType"></app-dropdown>
 </div>

@@ -1,0 +1,75 @@
+<div class="cart-page bg-white rounded-lg border p-10 min-h-screen xs:p-8">
+  <div class="container mx-auto max-w-5xl">
+    <h3 class="text-3xl font-semibold text-gray-800 mb-6 text-center">Kundkorg</h3>
+
+    <div class="cart-summary bg-white rounded-lg border p-6">
+      @if (cartItemsArray.length > 0) {
+        @for (item of cartItemsArray; track item.id) {
+          <div class="cart-item flex justify-between p-4 border-b">
+            <img
+              class="item-picture w-16 h-16 object-cover rounded-md"
+              [src]="item.image"
+              [alt]="item.title"
+            />
+
+            <div class="item-details flex-1 ml-4">
+              <p class="item-title text-lg font-medium">{{ item.title }}</p>
+              <p class="item-price text-gray-500">{{ item.price | number: '1.2-2' }} kr</p>
+            </div>
+
+            <div class="flex items-center">
+              <span class="item-quantity mx-2">Antal: {{ item.quantity }}</span>
+
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="increaseQuantity(item.id)"
+                class="material-symbols-outlined"
+              >
+                add
+              </button>
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="decreaseQuantity(item.id)"
+                class="material-symbols-outlined"
+              >
+                remove
+              </button>
+            </div>
+            <div class="col-end-10">
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="removeFromCart(item.id)"
+              class="material-symbols-outlined"
+            >
+              close
+            </button>
+            </div>
+          </div>
+        }
+
+        <div class="total-amount flex justify-between items-center pt-4 mt-4">
+          <p class="text-lg font-semibold">Totalt:</p>
+          <p class="text-xl font-bold">{{ totalAmount() | number: '1.2-2' }} kr</p>
+        </div>
+
+        <div class="justify-center items-center">
+          <button
+            class="checkout-button bg-black text-white rounded-lg shadow-lg transition-colors justify-center items-center"
+            (click)="showPaymentDetails = true"
+          >
+            Fortsätt
+          </button>
+        </div>
+      } @else {
+        <p class="empty-message">Kundkorgen är tom</p>
+      }
+    </div>
+
+    @if (showPaymentDetails) {
+      <app-payment-details></app-payment-details>
+    }
+  </div>
+</div>
