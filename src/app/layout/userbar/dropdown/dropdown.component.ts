@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, effect, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CartDropdownComponent } from '../../../cart/components/cart-dropdown/cart-dropdown.component';
-import { FavoriteDropdownComponent } from '../../../favorite/components/favorite-dropdown/favorite-dropdown.component';
+import { FavoriteDropdownComponent } from '../../../favorite/components/list-dropdown/favorite-dropdown.component';
 import { ProfileDropdownComponent } from '../../../profile/components/profile-dropdown/profile-dropdown.component';
 import { UserbarComponent } from '../userbar.component';
 
@@ -22,11 +22,4 @@ import { UserbarComponent } from '../userbar.component';
 export class DropdownComponent {
   readonly isOpen = input.required<boolean>();
   readonly selectedType = input.required<string>();
-
-  constructor() {
-    effect(() => {
-      console.log('DropdownComponent isOpen:', this.isOpen());
-      console.log('DropdownComponent selectedType:', this.selectedType());
-    });
-  }
 }

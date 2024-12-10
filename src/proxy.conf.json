@@ -1,0 +1,10 @@
+{
+  "/stripe": {
+    "target": "https://api.stripe.com",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/stripe": ""
+    }
+  }
+}

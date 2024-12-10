@@ -1,13 +1,13 @@
 import { Component, inject, effect } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { PaymentDetailsComponent } from '../../payment-details/payment-details.component';
 import { CommonModule } from '@angular/common';
+import { KlarnaPaymentsComponent } from '../klarna-payments/klarna-payments.component';
 
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [PaymentDetailsComponent, CommonModule],
+  imports: [KlarnaPaymentsComponent, CommonModule],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

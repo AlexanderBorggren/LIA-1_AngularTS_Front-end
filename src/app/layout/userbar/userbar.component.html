@@ -1,14 +1,17 @@
 <div class="w-full flex justify-end">
-
-@for (button of userButtons; track button.type) {
-  <button
-          (mouseenter)="toggleDropdown(button.type)"
-          class="material-symbols-outlined">
-    {{ button.icon }}
-  </button>
-}
+  @for (button of userButtons; track button.type) {
+    <button
+      mat-icon-button
+      [matBadge]="button.type === 'cart' && cartItemCount() > 0 ? cartItemCount() : null"
+      matBadgeOverlap="true"
+      (mouseenter)="toggleDropdown(button.type)"
+      (click)="routeToPage(button.route)"
+      class="material-symbols-outlined"
+    >
+      {{ button.icon }}
+    </button>
+  }
 </div>
-<div (mouseenter)="keepDropdownOpen()"
-     (mouseleave)="closeDropdown()">
+<div (mouseenter)="keepDropdownOpen()" (mouseleave)="closeDropdown()">
   <app-dropdown [isOpen]="isOpen()" [selectedType]="selectedType()"></app-dropdown>
 </div>

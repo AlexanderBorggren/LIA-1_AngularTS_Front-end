@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -9,4 +9,7 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './content.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContentComponent {}
+export class ContentComponent {
+  readonly isOpen = signal(false);
+  readonly selectedType = signal('');
+}

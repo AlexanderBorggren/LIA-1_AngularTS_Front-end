@@ -1,0 +1,12 @@
+@if (list.items.length > 0) {
+  @for (item of list.items; track item.id) {
+    <li class="py-1 text-sm">
+      <img [src]="item.image" alt="{{ item.title }}" class="w-8 h-8 inline-block mr-2" />
+      {{ item.title }}
+    </li>
+  }
+} @else {
+  <li class="py-1 text-sm text-gray-500">Inga sparade favoriter</li>
+}
+
+

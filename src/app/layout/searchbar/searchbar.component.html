@@ -1,10 +1,20 @@
 <div class="flex-grow max-w-md mx-4 z-10">
-  <mat-form-field appearance="outline" class="w-full z-10 relative">
-    <mat-icon matPrefix class="material-symbols-outlined">search</mat-icon>
-    <input matInput type="text" placeholder="Vad vill du handla?" [(ngModel)]="searchQuery"
-          class="text-white placeholder:text-white bg-transparent" (keyup.enter)="onSearch()">
-    <button mat-icon-button matSuffix (click)="onSearch()" class="material-symbols-outlined">
-      chevron_right
-    </button>
-  </mat-form-field>
+<div class="relative flex w-full items-center z-10">
+  <span class="absolute left-2 text-gray-400">
+    <mat-icon class="material-symbols-outlined pt-1">search</mat-icon>
+  </span>
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    class="w-full h-13 pl-10 pr-12 py-2 text-white placeholder-gray-400 placeholder-pt-1 bg-transparent border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent hover:border-gray-300"
+    placeholder="Sök"
+    (keyup.enter)="onSearch()"
+  />
+  <button
+    class="absolute right-2 text-gray-400 hover:text-gray-300"
+    (click)="onSearch()"
+  >
+    <mat-icon class="material-symbols-outlined pt-1">chevron_right</mat-icon>
+  </button>
+</div>
 </div>

@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'app-favorite-dropdown',
+  selector: 'app-checkout-failed',
   standalone: true,
   imports: [],
-  templateUrl: './favorite-dropdown.component.html',
-  styleUrl: './favorite-dropdown.component.scss',
+  templateUrl: './checkout-failed.component.html',
+  styleUrl: './checkout-failed.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FavoriteDropdownComponent {}
+export class CheckoutFailedComponent {}

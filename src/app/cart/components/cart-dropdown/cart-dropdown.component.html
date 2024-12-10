@@ -1,7 +1,7 @@
 <div class="cart-dropdown">
   <h3 class="text-center">Kundkorg</h3>
 
-  <div class="cart-items">
+  <div #cartItemsContainer class="cart-items-container">
     @if (cartItemsArray.length > 0) {
       @for (item of cartItemsArray; track item.id) {
         <div class="cart-item">
@@ -15,18 +15,18 @@
               <button
                 mat-icon-button
                 color="primary"
-                (click)="increaseQuantity(item.id)"
-                class="material-symbols-outlined"
-              >
-                add
-              </button>
-              <button
-                mat-icon-button
-                color="primary"
                 (click)="decreaseQuantity(item.id)"
                 class="material-symbols-outlined"
               >
                 remove
+              </button>
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="increaseQuantity(item.id)"
+                class="material-symbols-outlined"
+              >
+                add
               </button>
             </div>
           </div>
@@ -34,7 +34,7 @@
             mat-icon-button
             color="warn"
             (click)="removeFromCart(item.id)"
-            class="material-symbols-outlined self-end p-2"
+            class="material-symbols-outlined self-end p-2 py-3"
           >
             close
           </button>
@@ -50,13 +50,16 @@
       <div class="total-amount">
         <p>Total:</p>
         <p>{{ totalAmount() | number: '1.2-2' }} kr</p>
+        <p class="moms">inkl. moms</p>
       </div>
     </div>
-    <button
-      [routerLink]="'/checkout'"
-      class="checkout-button bg-black text-white py-2 px-4 rounded-lg shadow-lg transition-colors justify-center items-center"
-    >
-      Kassan
-    </button>
+    <div class="checkout-button-container">
+      <button
+        [routerLink]="'/checkout'"
+        class="checkout-button bg-black text-white py-2 px-4 rounded-lg shadow-lg transition-colors justify-center items-center text-center"
+      >
+        Kassan
+      </button>
+    </div>
   }
-
+</div>

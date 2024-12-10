@@ -1,0 +1,13 @@
+<div class="favorite-list-container">
+  <h3 class="text-center">Favoritlistor</h3>
+  <ul class="py-2 text-gray-700 rounded-md">
+    <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer font-bold" *ngFor="let list of favoriteLists; trackBy: trackByFn" (click)="selectItem(list.title)">
+      {{ list.title }}
+    </li>
+  </ul>
+  <div class="add-list-container">
+    <input #listInput type="text" placeholder="Lägg till ny lista" class="add-list-input" />
+    <button mat-icon-button aria-label="Lägg till ny lista" (click)="addNewList(listInput.value, listInput) (keydown.enter)="addNewList(listInput.value, listInput)"></button>">
+      <span class="material-symbols-outlined">add</span>
+    </button>
+  </div>

@@ -19,7 +19,9 @@ export class CartService {
 
   readonly cartItems = computed(() => this.cart().items);
   readonly totalAmount = computed(() => this.cart().totalAmount);
-
+  readonly cartItemsCount = computed(() =>
+    this.cart().items.reduce((total, item) => total + item.quantity, 0),
+  );
   private calculateTotalAmount(items: ProductDetailed[]) {
     return items.reduce((total, item) => total + item.price * item.quantity, 0);
   }
@@ -54,27 +56,32 @@ export class CartService {
         totalAmount,
       };
     });
-    this.cartOpen.set(true);
   }
 
   decreaseQuantity(productId: number) {
-    this.cart.update((currentCart) => {
-      const updatedItems = currentCart.items.map((item) => {
-        if (item.id === productId) {
-          item.quantity -= 1;
-        }
-        return item;
+    if (this.cart().items.length !== 0) {
+      this.cart.update((currentCart) => {
+        const updatedItems = currentCart.items
+          .map((item) => {
+            if (item.id === productId) {
+              if (item.quantity > 1) {
+                return { ...item, quantity: item.quantity - 1 };
+              }
+              return null;
+            }
+            return item;
+          })
+          .filter((item) => item !== null);
+
+        const totalAmount = this.calculateTotalAmount(updatedItems);
+
+        return {
+          ...currentCart,
+          items: updatedItems,
+          totalAmount,
+        };
       });
-
-      const totalAmount = this.calculateTotalAmount(updatedItems);
-
-      return {
-        ...currentCart,
-        items: updatedItems,
-        totalAmount,
-      };
-    });
-    this.cartOpen.set(true);
+    }
   }
 
   increaseQuantity(productId: number) {
@@ -104,8 +111,13 @@ export class CartService {
     this.cartOpen.set(false);
   }
 
+  clearCart() {
+    this.cart.set({ items: [], totalAmount: 0 });
+  }
+
   completePayment() {
     this.paymentCompleteSubject.set(true);
+    this.clearCart();
   }
 
   resetPaymentComplete() {

@@ -1,0 +1,54 @@
+<div class="favorite-container">
+  <h3 class="text-center">Favoritlistor</h3>
+  <ul class="text-gray-700 rounded-md py-2">
+    @if (favoriteLists().length > 0) {
+      @for (list of favoriteLists(); track list.title) {
+        <li
+          class="px-4 py-2 hover:bg-gray-100 cursor-pointer font-bold"
+          tabindex="0"
+          (click)="openList(list.id)"
+          (keyup.enter)="openList(list.id)"
+        >
+          {{ list.title }}
+          @if (selectedListId() === list.id) {
+            <ul class="ml-4 mt-2">
+              @if (list.items.length > 0) {
+                @for (item of list.items; track item.id) {
+                  <li class="py-1 text-sm">
+                    <img
+                      [src]="item.image"
+                      alt="{{ item.title }}"
+                      class="w-8 h-8 inline-block mr-2"
+                    />
+                    {{ item.title }}
+                  </li>
+                }
+              } @else {
+                <li class="py-1 text-sm text-gray-500">Inga sparade favoriter</li>
+              }
+            </ul>
+          }
+        </li>
+      }
+    } @else {
+      <p class="empty-message">Finns inga favoritlistor</p>
+    }
+  </ul>
+  <div class="add-list-container">
+    <input
+      #listInput
+      type="text"
+      (keyup.enter)="addNewList(listInput.value, listInput)"
+      placeholder="Lägg till ny lista"
+      class="add-list-input"
+    />
+    <button
+      mat-icon-button
+      aria-label="Lägg till ny lista"
+      (click)="addNewList(listInput.value, listInput)"
+      (keyup.enter)="addNewList(listInput.value, listInput)"
+    >
+      <span class="material-symbols-outlined pt-1">add</span>
+    </button>
+  </div>
+</div>

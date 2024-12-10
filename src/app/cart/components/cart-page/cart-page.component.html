@@ -23,39 +23,40 @@
               <button
                 mat-icon-button
                 color="primary"
-                (click)="increaseQuantity(item.id)"
-                class="material-symbols-outlined"
-              >
-                add
-              </button>
-              <button
-                mat-icon-button
-                color="primary"
                 (click)="decreaseQuantity(item.id)"
                 class="material-symbols-outlined"
               >
                 remove
               </button>
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="increaseQuantity(item.id)"
+                class="material-symbols-outlined"
+              >
+                add
+              </button>
             </div>
             <div class="col-end-10">
-            <button
-              mat-icon-button
-              color="warn"
-              (click)="removeFromCart(item.id)"
-              class="material-symbols-outlined"
-            >
-              close
-            </button>
+              <button
+                mat-icon-button
+                color="warn"
+                (click)="removeFromCart(item.id)"
+                class="material-symbols-outlined"
+              >
+                close
+              </button>
             </div>
           </div>
         }
 
-        <div class="total-amount flex justify-between items-center pt-4 mt-4">
-          <p class="text-lg font-semibold">Totalt:</p>
-          <p class="text-xl font-bold">{{ totalAmount() | number: '1.2-2' }} kr</p>
+        <div class="total-amount flex items-center pt-4 mt-4 px-4">
+          <p class="text-lg font-semibold px-1">Totalt:</p>
+          <p class="text-xl font-bold px-2">{{ totalAmount() | number: '1.2-2' }} kr</p>
+          <p class="moms">inkl. moms</p>
         </div>
 
-        <div class="justify-center items-center">
+        <div class="checkout-button-container items-center">
           <button
             class="checkout-button bg-black text-white rounded-lg shadow-lg transition-colors justify-center items-center"
             (click)="showPaymentDetails = true"
@@ -69,7 +70,9 @@
     </div>
 
     @if (showPaymentDetails) {
-      <app-payment-details></app-payment-details>
+      <div class="flexjustify-center p-10 w-full">
+        <app-klarna-payments></app-klarna-payments>
+      </div>
     }
   </div>
 </div>
